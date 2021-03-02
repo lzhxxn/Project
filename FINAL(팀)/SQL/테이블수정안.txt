@@ -1,0 +1,47 @@
+DROP TABLE ADMIN CASCADE CONSTRAINTS;
+DROP SEQUENCE ADMIN_ID;
+
+DROP TABLE MEMBER CASCADE CONSTRAINTS;
+DROP SEQUENCE MEMBER_ID;
+PURGE RECYCLEBIN;
+
+CREATE TABLE "MEMBER" (
+      "M_ID" NUMBER NOT NULL, -- 회원id,
+      "M_EMAIL" VARCHAR2(40) NOT NULL, -- 이메일,
+      "M_PWD" VARCHAR2(40) NULL, -- 비밀번호
+      "M_NICK" VARCHAR2(100) NULL, -- 닉네임,
+      "M_PHONE" VARCHAR2(30) NULL, -- 전화번호,
+      "M_GENDER" VARCHAR(10) NULL, -- 성별,
+      "M_BIRTH" DATE NULL, -- 생년월일,
+      "M_RDATE" DATE NULL, -- 가입일,
+      "M_FNAME" VARCHAR2(100) NULL,-- 파일이름,
+      "M_OFNAME" VARCHAR2(100) NULL, -- 오리지널파일이름,
+      "M_FILESIZE" NUMBER NULL, -- 파일사이즈,
+      "M_VERIFY" NUMBER NULL, -- 회원0/관리자9 확인,
+      "M_ABOUT" VARCHAR2(200) -- 소개글
+);
+-- 회원/관리자
+ALTER TABLE "MEMBER"
+   ADD CONSTRAINT "PK_MEMBER" -- 회원 기본키
+   PRIMARY KEY (
+      "M_ID" -- 회원id
+   );
+--회원/관리자
+CREATE SEQUENCE MEMBER_ID
+INCREMENT BY 1
+START WITH 1
+nocache;  
+
+desc member;
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'sin@naver.com', '1234', '스터디장', '010-4232-6777', '남자', '88/12/04', SYSDATE, 'null', 'null', 0, 0, '자바는 이식성과 호환성이 좋습니다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'seong@naver.com', '1234', '차기캡틴', '010-4563-6664', '여자', '96/03/11', SYSDATE, 'null', 'null', 0, 0, '저급언어:기계어, 어셈블리어가 있고, 고급언어:C, JAVA가 있다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'lim@naver.com', '1234', '연지곤지', '010-2234-5353', '여자', '97/04/07', SYSDATE, 'null', 'null', 0, 0, '자바스크립트는 보안성과 성능이 떨어지지만 확장성이 좋다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'cha@naver.com', '1234', '냐옹', '010-6567-8976', '여자', '99/02/03', SYSDATE, 'null', 'null', 0, 0, '파이썬은 이식성이 좋고 인터프리터 언어/객체지향 언어/스크립트 언어이다.');
+
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'yum@gmail.com', '1234',  '파이리', '010-5519-5448', '여자', '98/02/03', SYSDATE, 'null', 'null', 0, 9, 'UI설계원칙은 직관성, 유효성, 학습성, 유연성이있다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'lee@gmail.com', '1234', '망나뇽', '010-7535-8543', '남자', '95/05/05', SYSDATE, 'null', 'null', 0, 9, '데이터의 흐름모델은 단말, 처리, 자료의흐름, 자료저장소가있다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'dragon@gmail.com', '1234', '미뇽', '010-2344-4224', '남자', '90/05/05', SYSDATE, 'null', 'null', 0, 9, '공통모듈명세기법은 정확성, 명확성, 완전성, 일관성, 추적성이있다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'kwon@gmail.com', '1234', '권반장', '010-9942-1123', '남자', '90/01/24', SYSDATE,'null', 'null', 0, 9, 'STUB 하향식, DRIVER 상향식 임시제공 모듈통합이다.');
+INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'park@gmail.com', '1234', '바떼리', '010-6664-3453', '남자', '90/11/11', SYSDATE, 'null', 'null', 0, 9, 'STAF는 분산환경, xUnit은 Java C++, FitNesse 웹기반, Ruby 인터프리터방식이다.');
+commit;
+select * from member;
