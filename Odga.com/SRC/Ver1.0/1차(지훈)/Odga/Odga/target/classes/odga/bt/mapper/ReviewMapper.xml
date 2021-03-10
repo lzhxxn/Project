@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="odga.bt.mapper.ReviewMapper">
+	<select id="review" resultType="Review">
+		select * from BOARD order by B_ID desc
+	</select>
+	
+	<select id="getReview" resultType="Review" parameterType="long">
+		select * from BOARD where B_ID=#{b_id}
+	</select>
+	
+	<select id="selectByWriter" resultType="Review" parameterType="String">		<!-- 이름으로 검색 -->
+		select * from BOARD where B_WRITER like '%'||#{b_writer}||'%' order by B_ID desc
+	</select>
+	<select id="selectBySubject" resultType="Review" parameterType="String">	<!-- 제목으로 검색 -->
+		select * from BOARD where B_SUBJECT like '%'||#{b_subject}||'%' order by B_ID desc
+	</select>
+	<select id="selectByContent" resultType="Review" parameterType="String">	<!-- 내용으로 검색 -->
+		select * from BOARD where B_CONTENT like '%'||#{b_content}||'%' order by B_ID desc
+	</select>
+	
+	<select id="countByCatgo" resultType="int" parameterType="Review"> 	<!-- 카테고리마다 갯수 -->
+		select count(*) from Board where B_CATGO='#{b_catgo}'
+	</select>
+
+	<select id="countByFamily" resultType="int"> 	<!-- 가족여행 갯수 -->
+		select count(*) from Board where B_CATGO='가족여행'
+	</select>
+	<select id="countByAlone" resultType="int">		<!-- 혼자여행 갯수 -->
+		select count(*) from Board where B_CATGO='혼자여행'
+	</select>
+	<select id="countByCouple" resultType="int">	<!-- 커플여행 갯수 -->
+		select count(*) from Board where B_CATGO='커플여행'
+	</select>
+	<select id="countByFriend" resultType="int">	<!-- 우정여행 갯수 -->
+		select count(*) from Board where B_CATGO='우정여행'
+	</select>
+	<select id="countByPackage" resultType="int">	<!-- 패키지여행 갯수 -->
+		select count(*) from Board where B_CATGO='패키지여행'
+	</select>
+	
+	<insert id="insert" parameterType="Review"> 
+		insert into BOARD values(BOARD_ID.nextval, #{b_writer}, #{b_subject}, #{b_content}, #{b_img}, SYSDATE, #{b_catgo}, 0, #{m_id})
+ 	</insert><!--#{b_like}#{m_id}#{a_id}-->
+ 	
+ 	<!-- 문의하기 -->
+ 	<insert id="insertS" parameterType="Support">
+ 	 	insert into SUPPORT values(SUPPORT_ID.nextval, #{s_subject}, #{s_content}, SYSDATE, #{m_id})
+ 	</insert>
+ 	
+ 	<!-- 문의하기 리스트 -->
+ 	<select id="notifications" resultType="Support">
+ 		select * from SUPPORT order by S_ID
+ 	</select>
+ 	
+ 	<!-- 문의하기 상세페이지 -->
+ 	<select id="selectByTitle" parameterType="String" resultType="Support">
+ 		select * from SUPPORT where S_SUBJECT=#{S_SUBJECT}
+ 	</select>
+ 	
+ 	<!-- 베스트리뷰 추출 -->
+    <select id="selectBestReview" resultType="Review" >
+	<![CDATA[ 
+	select * from (select * from BOARD order by B_LIKE desc) where rownum<2
+	]]>
+	</select>
+	
+	<!-- 나의 여행 후기 -->
+	<select id="selectByReview" parameterType="long" resultType="Review">
+ 		select * from BOARD where M_ID=#{M_ID}
+ 	</select>
+	
+ 	 
+	
+</mapper>

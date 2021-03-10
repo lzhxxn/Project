@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   <typeAliases>
+       <typeAlias alias="Support" type="odga.bt.domain.Support"/>
+   	   <typeAlias alias="Review" type="odga.bt.domain.Review"/>
+   	   <typeAlias alias="Member" type="odga.bt.domain.Member"/>
+   	   <typeAlias alias="Touritems" type="odga.bt.domain.Touritems"/>
+       <typeAlias alias="TouritemsVo" type="odga.bt.domain.TouritemsVo"/>
+   </typeAliases>
+ 
+</configuration>
+
