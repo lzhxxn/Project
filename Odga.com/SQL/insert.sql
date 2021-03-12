@@ -1,3 +1,9 @@
+--문의사항
+INSERT INTO SUPPORT VALUES (SUPPORT_ID.nextval, '매번 좋은정보 얻고갑니다!', '오디가.com때문에 여행 갈 때 계획을 짤 수있어서 좋습니다!', SYSDATE, 2, SUPPORT_ORIGIN_NO.nextval, 0);
+INSERT INTO SUPPORT VALUES (SUPPORT_ID.nextval, '제주 애월쪽 정보를 더알고싶어요!', '오디가.com때문에 여행 갈 때 계획을 짤 수있어서 좋습니다!', SYSDATE, 3, SUPPORT_ORIGIN_NO.nextval, 0);
+INSERT INTO SUPPORT VALUES (SUPPORT_ID.nextval, '모바일과 연동되나요 ?!', '오디가.com때문에 여행 갈 때 계획을 짤 수있어서 좋습니다!', SYSDATE, 12, SUPPORT_ORIGIN_NO.nextval, 0);
+INSERT INTO SUPPORT VALUES (SUPPORT_ID.nextval, '정말 사이트 예뻐요!', '오디가.com때문에 여행 갈 때 계획을 짤 수있어서 좋습니다!', SYSDATE, 11, SUPPORT_ORIGIN_NO.nextval, 0);
+
 --회원
 INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'ymhur2030@naver.com', '1234' ,  '윰', '010-5519-5448', '여자', '98/02/03',SYSDATE);
 INSERT INTO MEMBER VALUES (MEMBER_ID.nextval, 'chikchok@naver.com', '1234' , '칙촉', '010-1234-1234', '여자', '95/05/05',SYSDATE);
